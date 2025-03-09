@@ -28,6 +28,7 @@
 
 		<app.runtime>4.8.1</app.runtime>
 		<mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
+		
 	</properties>
 
 	<build>
@@ -36,10 +37,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.2.0</version>
-				<configuration>
-					<cloudHub2>true</cloudHub2>  <!-- Enable CloudHub 2.0 Deployment -->
-				</configuration>
-			</plugin>
+				</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
@@ -54,6 +52,7 @@
 						<username>${anypoint.username}</username>
 						<password>${anypoint.password}</password>
 						<environment>${env}</environment>
+						<target>Cloudhub-US-East-2</target>
 						<applicationName>${appname}</applicationName>
 						<businessGroup>${business}</businessGroup>
 						<workerType>${vCore}</workerType>
