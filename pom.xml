@@ -5,17 +5,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	<distributionManagement>
 		<repository>
-			<id>mulesoft-exchange</id>
-			<url>https://repository.mulesoft.org/nexus/content/repositories/releases/</url>
+			<id>Repository</id>
+			<name>Corporate Repository</name>
+			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/ad21599c-ce8f-48ff-a6a3-004ca05a8b44/maven</url>
+			<layout>default</layout>
 		</repository>
 		<snapshotRepository>
 			<id>mulesoft-exchange-snapshots</id>
 			<url>https://repository.mulesoft.org/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
+
 	</distributionManagement>
 
 
-	<groupId>com.mycompany</groupId>
+	<groupId>ad21599c-ce8f-48ff-a6a3-004ca05a8b44</groupId>
 	<artifactId>sf</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
@@ -28,7 +31,9 @@
 
 		<app.runtime>4.8.1</app.runtime>
 		<mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
-		
+		<environment>Sandbox</environment>
+		<muleVersion>4.9.0</muleVersion>
+
 	</properties>
 
 	<build>
@@ -37,7 +42,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.2.0</version>
-				</plugin>
+			</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
@@ -46,20 +51,38 @@
 
 				<configuration>
 
-					<cloudHubDeployment>
+					<cloudHub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>${mule.version}</muleVersion>
-						<username>${anypoint.username}</username>
-						<password>${anypoint.password}</password>
+						<provider>MC</provider>
 						<environment>${env}</environment>
 						<target>Cloudhub-US-East-2</target>
+						<muleVersion>${muleVersion}</muleVersion>
+						<username>${anypoint.username}</username>
+						<password>${anypoint.password}</password>
+
+
 						<applicationName>${appname}</applicationName>
-						<businessGroup>${business}</businessGroup>
-						<workerType>${vCore}</workerType>
-						<workers>${workers}</workers>
+
+						<replicas>1</replicas>
+						<vCores>0.1</vCores>
 
 						<objectStoreV2>true</objectStoreV2>
-					</cloudHubDeployment>
+						<deploymentSettings>
+							<http>
+								<inbound>
+									<publicUrl>${publicURL}</publicUrl>
+									<forwardSslSession>false</forwardSslSession>
+									<lastMileSecurity>false</lastMileSecurity>
+								</inbound>
+							</http>
+						</deploymentSettings>
+						<properties>
+							<mule.env>dev</mule.env>
+							<secureProperties>
+								<key>sec-properties-password</key>
+							</secureProperties>
+						</properties>
+					</cloudHub2Deployment>
 					<!-- <cloudHubDeployment> <uri>https://anypoint.mulesoft.com</uri> <muleVersion>4.3.0</muleVersion> 
 						<username>SecFeb</username> <password>Different@123</password> <environment>Sandbox</environment> 
 						<applicationName>spend</applicationName> <businessGroup>Aqib</businessGroup> 
@@ -116,7 +139,11 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
+
 		</pluginRepository>
+
 	</pluginRepositories>
+
+
 
 </project>
