@@ -4,16 +4,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<distributionManagement>
-    <repository>
-        <id>mulesoft-exchange</id>
-        <url>https://repository.mulesoft.org/nexus/content/repositories/releases/</url>
-    </repository>
-    <snapshotRepository>
-        <id>mulesoft-exchange-snapshots</id>
-        <url>https://repository.mulesoft.org/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-</distributionManagement>
-	
+		<repository>
+			<id>mulesoft-exchange</id>
+			<url>https://repository.mulesoft.org/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>mulesoft-exchange-snapshots</id>
+			<url>https://repository.mulesoft.org/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>sf</artifactId>
@@ -36,6 +36,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.2.0</version>
+				<configuration>
+					<cloudHub2>true</cloudHub2>  <!-- Enable CloudHub 2.0 Deployment -->
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
@@ -55,21 +58,14 @@
 						<businessGroup>${business}</businessGroup>
 						<workerType>${vCore}</workerType>
 						<workers>${workers}</workers>
-						
+
 						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
-					<!-- <cloudHubDeployment>
-						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>4.3.0</muleVersion>
-						<username>SecFeb</username>
-						<password>Different@123</password>
-						<environment>Sandbox</environment>
-						<applicationName>spend</applicationName>
-						<businessGroup>Aqib</businessGroup>
-						<workerType>Micro</workerType>
-						<workers>1</workers>
-						<objectStoreV2>true</objectStoreV2>
-					</cloudHubDeployment> -->
+					<!-- <cloudHubDeployment> <uri>https://anypoint.mulesoft.com</uri> <muleVersion>4.3.0</muleVersion> 
+						<username>SecFeb</username> <password>Different@123</password> <environment>Sandbox</environment> 
+						<applicationName>spend</applicationName> <businessGroup>Aqib</businessGroup> 
+						<workerType>Micro</workerType> <workers>1</workers> <objectStoreV2>true</objectStoreV2> 
+						</cloudHubDeployment> -->
 
 				</configuration>
 			</plugin>
