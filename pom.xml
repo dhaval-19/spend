@@ -55,6 +55,7 @@
 						<businessGroup>${business}</businessGroup>
 						<workerType>${vCore}</workerType>
 						<workers>${workers}</workers>
+						<cloudHub2>true</cloudHub2>
 						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
 					<!-- <cloudHubDeployment>
