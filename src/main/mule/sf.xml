@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1a604c98-6860-4727-ba68-2bb950877788" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="979c53e6-bc08-4bc9-b85a-bda1e9be624e" >
+		<salesforce:basic-connection username="dbadhe96@gmail.com" password="Different@123" securityToken="6KJeTtMfKoPJs2pGcuUTyH6l" url="https://login.salesforce.com/services/Soap/u/61.0" />
+	</salesforce:sfdc-config>
+	<flow name="sfFlow" doc:id="ec0f766e-9f7e-423a-a387-5928fe7215a6" >
+		<http:listener doc:name="Listener" doc:id="2ed3cce3-9fe1-447d-a445-3acb48507de0" config-ref="HTTP_Listener_config" path="/demo"/>
+		<logger level="INFO" doc:name="Logger" doc:id="8e389310-05ec-48ac-af86-723e45a537fa" message="Start"/>
+		<ee:transform doc:name="Transform Message" doc:id="42f4a191-38d7-45dd-8300-2e1a5a1ae682" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+"HI":"Welcome"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="84416b54-f8d9-45fb-b4d7-5a060ed57e85" message="End"/>
+	</flow>
+</mule>
